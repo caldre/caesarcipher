@@ -1,19 +1,22 @@
 import React from "react";
-// import axios from "axios";
+import { sentences } from "./tools/logics";
 import "./App.css";
 
-import { cipher } from "./tools/abc";
+const { passedSentences, discardedSentences } = sentences;
+
+const renderSentences = strings =>
+  strings.map(sentence => {
+    return (
+      <li key={sentence} className="sentence">
+        {sentence}
+      </li>
+    );
+  });
 
 function App() {
-  let oldWord =
-    "Åcglsftfzzf vkvålåhhu ucrcffu zvzphhspzääååh qh rcrcf lzppuåcf åhp hpuhrpu åhyöpååhlzzh wpåff äzrhsåhh höhåh zääuzh rvrvärzpzzh.";
-  let cipherKey = 22;
-
-  //cipher(oldWord, cipherKey);
-
   return (
-    <div className="App">
-      <header className="App-header">This is a sample for caesar cipher</header>
+    <div className="app">
+      <ol className="message">{renderSentences(passedSentences)}</ol>
     </div>
   );
 }
