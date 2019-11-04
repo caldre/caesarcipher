@@ -1,15 +1,51 @@
 body {
-  background-color: #333;
+  background-color: rgb(40, 41, 85);
 }
 
-.app {
-  background-color: #333;
+.message-lists {
+  display: flex;
+  flex-direction: row;
 }
 
-.message {
+.message-board {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  justify-content: left;
+  color: aliceblue;
+}
+
+.navbar {
+  display: flex;
+  flex: 1;
+  list-style: none;
+  font-size: 1.25rem;
+  background-color: aliceblue;
+}
+.navbar li {
+  padding: 1vh;
+}
+
+.navbar li:hover {
+  color: aliceblue;
+  background-color: rgb(61, 105, 187);
+  cursor: pointer;
+}
+
+.pressed {
+  color: aliceblue;
+  background-color: cornflowerblue;
+}
+
+.sentence::first-letter {
+  text-transform: capitalize;
+  color: aliceblue;
 }
 
 .sentence {
-  color: white;
-  padding: 1vh;
+  font-size: 0.75rem;
+  color: aliceblue;
+  padding: 0.5vh;
 }

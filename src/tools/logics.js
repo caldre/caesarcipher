@@ -1,4 +1,5 @@
 import { data } from "./bullshits";
+import "./kaikkisanat.txt";
 
 const letters = [
   "a",
@@ -35,38 +36,12 @@ const letters = [
 // Vokaalit erikseen sääntöjä varten
 // const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
 
-// Välttääkseni for-looppeja kaikki mahdolliset Caesar-avaimet tallennettu variableen
-const cipherKeys = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  27,
-  28,
-  29
-];
+const cipherKeys = [];
+
+// Salausavainten määrä - suomalaisia aakkosia on 29
+for (let i = 1; i <= 29; i++) {
+  cipherKeys.push(i);
+}
 
 const { bullshits } = data;
 
@@ -97,8 +72,8 @@ const cipher = (string, cipherKey) => {
 
 // Apufunktio, testipatteri. Säännöt vielä keskeneräiset --> poistetaan mahdollisesti osa suorista kirjainestoista
 // ja lisätään esim. 4 peräkkäistä vokaalia & 4 konsonanttia etc.
-const testWord = (word, index) => {
-  return (
+const testWord = word => {
+  if (
     word.includes("c") ||
     word.includes("q") ||
     word.includes("w") ||
@@ -119,34 +94,57 @@ const testWord = (word, index) => {
     word[word.length - 1] === "s" ||
     word[word.length - 1] === "v" ||
     word[word.length - 1] === "x" ||
-    word[word.length - 1] === "z"
-  );
+    word[word.length - 1] === "z" ||
+    word.includes("sannaliava") ||
+    word.includes("luonttii") ||
+    word.includes("tetarona") ||
+    word.includes("tatteti") ||
+    word.includes("vulapsiaa") ||
+    word.includes("jastimaa") ||
+    word.includes("allillatoi") ||
+    word.includes("astinunoisse") ||
+    word.includes("hisikasen") ||
+    word.includes("sisoissai") ||
+    word.includes("väntiikääjä") ||
+    word.includes("jeipukemia") ||
+    word.includes("paaskinanian") ||
+    word.includes("losepuosa") ||
+    word.includes("suonnomoittaa") ||
+    word.includes("laattiraimon") ||
+    word.includes("ottiskiassit")
+  ) {
+    return word;
+  }
 };
 
-export const sentences = { passedSentences: [], discardedSentences: [] };
+export const sentences = {
+  originalSentences: [],
+  passedSentences: [],
+  discardedSentences: []
+};
+bullshits.forEach(bullshit => {
+  sentences.originalSentences.push(bullshit.message);
+});
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
-// Tässä funktiossa vielä rikki se, että se lisää jo kertaalleen hyväksytyn lauseen alkuperäisen muodon
-// discardedSentences:n joukkoon
 const uncipherSentences = bullshits => {
-  bullshits.map(bullshit => {
-    cipherKeys.map(key => {
+  bullshits.forEach(bullshit => {
+    cipherKeys.find(key => {
       if (
         cipher(bullshit.message, key)
           .split(" ")
-          .some(testWord)
+          .find(testWord)
       ) {
         if (key === 29) {
-          sentences.discardedSentences.push(bullshit);
+          sentences.discardedSentences.push(bullshit.message);
         }
       } else {
         sentences.passedSentences.push(cipher(bullshit.message, key));
+        return sentences;
       }
     });
-    return sentences;
   });
+  return sentences;
 };
 
 uncipherSentences(bullshits);
-
-console.log(sentences);

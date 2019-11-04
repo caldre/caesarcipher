@@ -1,22 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Messages from "./components/Messages";
 import { sentences } from "./tools/logics";
 import "./App.css";
 
-const { passedSentences, discardedSentences } = sentences;
-
-const renderSentences = strings =>
-  strings.map(sentence => {
-    return (
-      <li key={sentence} className="sentence">
-        {sentence}
-      </li>
-    );
-  });
-
 function App() {
+  const [showOriginal, setShowOriginal] = useState(false);
+  const [showPassed, setShowpassed] = useState(false);
+  const [showDiscarded, setShowDiscarded] = useState(false);
+  const { originalSentences, passedSentences, discardedSentences } = sentences;
+
   return (
     <div className="app">
-      <ol className="message">{renderSentences(passedSentences)}</ol>
+      <Header />
+      <Navbar
+        setOrg={() => setShowOriginal(!showOriginal)}
+        isOrg={showOriginal}
+        setPass={() => setShowpassed(!showPassed)}
+        isPass={showPassed}
+        setDisc={() => setShowDiscarded(!showDiscarded)}
+        isDisc={showDiscarded}
+      />
+      <div className="message-lists">
+        {showOriginal ? (
+          <Messages
+            className="fas fa-question-circle"
+            header="Original Sentences"
+            messages={originalSentences}
+            color="blue"
+          />
+        ) : null}
+        {showPassed ? (
+          <Messages
+            className="fas fa-check-circle"
+            header="Passed Sentences"
+            messages={passedSentences}
+            color="lightgreen"
+          />
+        ) : null}
+        {showDiscarded ? (
+          <Messages
+            className="fas fa-times-circle"
+            header="Discarded Sentences"
+            messages={discardedSentences}
+            color="red"
+          />
+        ) : null}
+      </div>
     </div>
   );
 }
