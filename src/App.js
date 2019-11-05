@@ -15,26 +15,26 @@ function App() {
     <div className="app">
       <Header />
       <Navbar
-        setOrg={() => setShowOriginal(!showOriginal)}
-        isOrg={showOriginal}
+        /* setOrg={() => setShowOriginal(!showOriginal)}
+        isOrg={showOriginal} */
         setPass={() => setShowpassed(!showPassed)}
         isPass={showPassed}
         setDisc={() => setShowDiscarded(!showDiscarded)}
         isDisc={showDiscarded}
       />
       <div className="message-lists">
-        {showOriginal ? (
+        {/* showOriginal ? (
           <Messages
             className="fas fa-question-circle"
             header="Original Sentences"
             messages={originalSentences}
             color="blue"
           />
-        ) : null}
+        ) : null */}
         {showPassed ? (
           <Messages
             className="fas fa-check-circle"
-            header="Passed Sentences"
+            header="No Bullshit"
             messages={passedSentences}
             color="lightgreen"
           />
@@ -42,7 +42,7 @@ function App() {
         {showDiscarded ? (
           <Messages
             className="fas fa-times-circle"
-            header="Discarded Sentences"
+            header="Bullshit"
             messages={discardedSentences}
             color="red"
           />

@@ -1,6 +1,7 @@
 import { data } from "./bullshits";
 import "./kaikkisanat.txt";
 
+const { bullshits } = data;
 const letters = [
   "a",
   "b",
@@ -33,17 +34,14 @@ const letters = [
   "ö"
 ];
 
-// Vokaalit erikseen sääntöjä varten
+// Vokaalit erikseen sääntöjä varten ..to be continued
 // const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
 
 const cipherKeys = [];
-
 // Salausavainten määrä - suomalaisia aakkosia on 29
 for (let i = 1; i <= 29; i++) {
   cipherKeys.push(i);
 }
-
-const { bullshits } = data;
 
 // Apufunktio, Caesar-käännös
 const cipher = (string, cipherKey) => {
@@ -89,29 +87,8 @@ const testWord = word => {
     word[word.length - 1] === "l" ||
     word[word.length - 1] === "m" ||
     word[word.length - 1] === "p" ||
-    word[word.length - 1] === "q" ||
     word[word.length - 1] === "r" ||
-    word[word.length - 1] === "s" ||
-    word[word.length - 1] === "v" ||
-    word[word.length - 1] === "x" ||
-    word[word.length - 1] === "z" ||
-    word.includes("sannaliava") ||
-    word.includes("luonttii") ||
-    word.includes("tetarona") ||
-    word.includes("tatteti") ||
-    word.includes("vulapsiaa") ||
-    word.includes("jastimaa") ||
-    word.includes("allillatoi") ||
-    word.includes("astinunoisse") ||
-    word.includes("hisikasen") ||
-    word.includes("sisoissai") ||
-    word.includes("väntiikääjä") ||
-    word.includes("jeipukemia") ||
-    word.includes("paaskinanian") ||
-    word.includes("losepuosa") ||
-    word.includes("suonnomoittaa") ||
-    word.includes("laattiraimon") ||
-    word.includes("ottiskiassit")
+    word[word.length - 1] === "v"
   ) {
     return word;
   }
