@@ -6,31 +6,20 @@ import { sentences } from "./tools/logics";
 import "./App.css";
 
 function App() {
-  const [showOriginal, setShowOriginal] = useState(false);
   const [showPassed, setShowpassed] = useState(false);
   const [showDiscarded, setShowDiscarded] = useState(false);
-  const { originalSentences, passedSentences, discardedSentences } = sentences;
+  const { passedSentences, discardedSentences } = sentences;
 
   return (
     <div className="app">
       <Header />
       <Navbar
-        /* setOrg={() => setShowOriginal(!showOriginal)}
-        isOrg={showOriginal} */
         setPass={() => setShowpassed(!showPassed)}
         isPass={showPassed}
         setDisc={() => setShowDiscarded(!showDiscarded)}
         isDisc={showDiscarded}
       />
       <div className="message-lists">
-        {/* showOriginal ? (
-          <Messages
-            className="fas fa-question-circle"
-            header="Original Sentences"
-            messages={originalSentences}
-            color="blue"
-          />
-        ) : null */}
         {showPassed ? (
           <Messages
             className="fas fa-check-circle"

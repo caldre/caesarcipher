@@ -1,7 +1,17 @@
 import { data } from "./bullshits";
+import {
+  endsWith2Consonants,
+  hasBadChars,
+  endsWithBadChar,
+  has4ConsecutiveVowelsOrConsonants
+} from "./wordrules";
 import "./kaikkisanat.txt";
 
 const { bullshits } = data;
+const sentences = {
+  passedSentences: [],
+  discardedSentences: []
+};
 const letters = [
   "a",
   "b",
@@ -33,9 +43,6 @@ const letters = [
   "ä",
   "ö"
 ];
-
-// Vokaalit erikseen sääntöjä varten ..to be continued
-// const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
 
 const cipherKeys = [];
 // Salausavainten määrä - suomalaisia aakkosia on 29
@@ -72,36 +79,14 @@ const cipher = (string, cipherKey) => {
 // ja lisätään esim. 4 peräkkäistä vokaalia & 4 konsonanttia etc.
 const testWord = word => {
   if (
-    word.includes("c") ||
-    word.includes("q") ||
-    word.includes("w") ||
-    word.includes("x") ||
-    word.includes("z") ||
-    word[word.length - 1] === "b" ||
-    word[word.length - 1] === "d" ||
-    word[word.length - 1] === "f" ||
-    word[word.length - 1] === "g" ||
-    word[word.length - 1] === "h" ||
-    word[word.length - 1] === "j" ||
-    word[word.length - 1] === "k" ||
-    word[word.length - 1] === "l" ||
-    word[word.length - 1] === "m" ||
-    word[word.length - 1] === "p" ||
-    word[word.length - 1] === "r" ||
-    word[word.length - 1] === "v"
+    //endsWith2Consonants(word) || TÄSSÄ SÄÄNNÖSSÄ JOKIN BUGI: case: "Taikuri oli saavuttanut valta aseman yhteisössä ja sai hiljaisen hyväksynnän niljakkaalle toiminnalleen."
+    hasBadChars(word) ||
+    endsWithBadChar(word) ||
+    has4ConsecutiveVowelsOrConsonants(word)
   ) {
     return word;
   }
 };
-
-export const sentences = {
-  originalSentences: [],
-  passedSentences: [],
-  discardedSentences: []
-};
-bullshits.forEach(bullshit => {
-  sentences.originalSentences.push(bullshit.message);
-});
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
 const uncipherSentences = bullshits => {
@@ -125,3 +110,5 @@ const uncipherSentences = bullshits => {
 };
 
 uncipherSentences(bullshits);
+
+export { sentences };
