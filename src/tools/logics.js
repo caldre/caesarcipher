@@ -55,6 +55,8 @@ const cipher = (string, cipherKey) => {
   let newSentence = "";
   string
     .toLowerCase()
+    .slice(0, -1)
+
     .split("")
     .map(character => {
       // Tarkastetaan onko kohdalla kirjain
@@ -79,7 +81,7 @@ const cipher = (string, cipherKey) => {
 // ja lisätään esim. 4 peräkkäistä vokaalia & 4 konsonanttia etc.
 const testWord = word => {
   if (
-    //endsWith2Consonants(word) || TÄSSÄ SÄÄNNÖSSÄ JOKIN BUGI: case: "Taikuri oli saavuttanut valta aseman yhteisössä ja sai hiljaisen hyväksynnän niljakkaalle toiminnalleen."
+    endsWith2Consonants(word) ||
     hasBadChars(word) ||
     endsWithBadChar(word) ||
     has4ConsecutiveVowelsOrConsonants(word)
@@ -101,7 +103,9 @@ const uncipherSentences = bullshits => {
           sentences.discardedSentences.push(bullshit.message);
         }
       } else {
-        sentences.passedSentences.push(cipher(bullshit.message, key));
+        sentences.passedSentences.push(
+          cipher(bullshit.message.concat("."), key)
+        );
         return sentences;
       }
     });

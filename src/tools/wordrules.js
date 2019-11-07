@@ -4,8 +4,8 @@
 // Lauseissa ei havaittu esimerkiksi erisnimiä, joka mahdollistaa tämän lähestymistavan
 //
 // Säännöissä ei ole (toistaiseksi) menty siihen että poissuljettaisiin eri kirjainyhdistelmiä
-// esimerkiksi "njn", "tkj" ja "jr" joita ei varmasti kylläkään suomenkielessä esiinny.
-// Pidän niitä vähän kankeana koska näitä voi olla satoja, otetaan mahdollisesti silti käyttöön mikäli
+// esimerkiksi "njn", "tkj" ja "jr" joita ei kylläkään suomenkielessä esiinny.
+// Pidän niitä vähän kankeana koska näitä yhdistelmiä voi olla satoja, otetaan mahdollisesti silti käyttöön mikäli
 // pseudosuomea ei muulla tavoin saada karsittua
 
 const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
@@ -19,7 +19,7 @@ const endsWith2Consonants = word => {
   return lastTwoChars.every(isConsonant);
 };
 
-// Muuten kuin lainasanoissa tai erisnimissä ei esiinny C, Q, W, X, Z
+// Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z
 const hasBadChars = word => {
   const badChars = ["c", "q", "w", "x", "z"];
   const checkForBadChars = character => {
@@ -34,7 +34,7 @@ const endsWithBadChar = word => {
   return badChars.includes(word[word.length - 1]);
 };
 
-// Sanassa ei voi esiintyä neljää peräkkäistä vokaalia
+// Sanassa ei voi esiintyä neljää peräkkäistä vokaalia tai konsonanttia
 const has4ConsecutiveVowelsOrConsonants = word => {
   if (word.length >= 4) {
     for (let i = 0; i < word.length - 3; i++) {
