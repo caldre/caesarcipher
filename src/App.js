@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Messages from "./components/Messages";
+import Footer from "./components/Footer";
 import { sentences } from "./tools/logics";
 import "./App.css";
 
@@ -11,7 +12,7 @@ function App() {
   const { passedSentences, discardedSentences } = sentences;
 
   return (
-    <div className="app">
+    <div className="container">
       <Header />
       <Navbar
         setPass={() => setShowpassed(!showPassed)}
@@ -19,7 +20,7 @@ function App() {
         setDisc={() => setShowDiscarded(!showDiscarded)}
         isDisc={showDiscarded}
       />
-      <div className="message-lists">
+      <div className="message-area">
         {showPassed ? (
           <Messages
             className="fas fa-check-circle"
@@ -37,6 +38,7 @@ function App() {
           />
         ) : null}
       </div>
+      <Footer />
     </div>
   );
 }

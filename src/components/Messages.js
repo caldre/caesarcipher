@@ -12,7 +12,7 @@ const renderSentences = strings =>
 const Messages = props => {
   return (
     <div className="message-board">
-      <h4 className="header">
+      <h4 className="card-header">
         <i
           className={props.className}
           style={{
@@ -22,7 +22,7 @@ const Messages = props => {
         />
         {props.header}
       </h4>
-      <ol>{renderSentences(props.messages)}</ol>
+      <ol className="message-list">{renderSentences(props.messages)}</ol>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import {
   endsWithBadChar,
   has4ConsecutiveVowelsOrConsonants
 } from "./wordrules";
-import "./kaikkisanat.txt";
+// import { vocabulary } from "./kaikkisanat.js";
 
 const { bullshits } = data;
 const sentences = {
@@ -56,7 +56,6 @@ const cipher = (string, cipherKey) => {
   string
     .toLowerCase()
     .slice(0, -1)
-
     .split("")
     .map(character => {
       // Tarkastetaan onko kohdalla kirjain

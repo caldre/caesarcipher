@@ -1,42 +1,93 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
+  font-family: "Cabin Condensed", sans-serif;
   background-color: rgb(40, 41, 85);
 }
 
-.message-lists {
-  display: flex;
-  flex-direction: row;
-}
-
-.message-board {
+.container {
   display: flex;
   flex-direction: column;
 }
+
 .header {
+  font-family: "Londrina Solid", cursive;
+  font-size: 3rem;
   display: flex;
   justify-content: left;
   color: aliceblue;
+  margin: 5vh;
 }
 
 .navbar {
   display: flex;
   flex: 1;
   list-style: none;
-  font-size: 1.25rem;
+  color: grey;
   background-color: aliceblue;
 }
 .navbar li {
-  padding: 1vh;
+  font-family: "Permanent Marker", cursive;
+  font-size: 2rem;
+
+  padding: 0.5vh;
+  margin: 1vh;
 }
 
 .navbar li:hover {
-  color: aliceblue;
-  background-color: rgb(61, 105, 187);
+  transition: 0.2s;
+  color: black;
   cursor: pointer;
 }
 
 .pressed {
+  transition: 0.2s;
+  color: black !important;
+}
+
+.card-header {
+  margin-top: 4vh;
+  height: 5vh;
+  width: 20vh;
+  font-family: "Londrina Solid", cursive;
+  font-size: 2rem;
+  background-color: rgba(236, 246, 255, 0.1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: aliceblue;
-  background-color: cornflowerblue;
+  margin-left: 5vh;
+}
+
+.header a {
+  top: 0px;
+}
+
+.message-area {
+  display: flex;
+  flex-direction: row;
+}
+
+.message-list {
+  padding: 3vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  color: aliceblue;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  background-color: rgba(236, 246, 255, 0.1);
+  border-radius: 20px;
+}
+
+.message-board {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3vh;
 }
 
 .sentence::first-letter {
@@ -44,8 +95,31 @@ body {
   color: aliceblue;
 }
 
-.sentence {
-  font-size: 0.75rem;
-  color: aliceblue;
+.sentence:nth-child(odd) {
+  background-color: rgb(58, 59, 107);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 3vh;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  color: rgb(104, 104, 158);
+  background-color: rgb(25, 25, 50);
+}
+
+.footer a {
   padding: 0.5vh;
+  font-size: 2vh;
+  color: rgb(104, 104, 158);
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: white;
 }

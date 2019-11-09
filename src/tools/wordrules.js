@@ -47,7 +47,7 @@ const has4ConsecutiveVowelsOrConsonants = word => {
         }
       }
     }
-  }
+  } else return false;
 };
 
 export {
