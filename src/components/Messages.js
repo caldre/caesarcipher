@@ -1,15 +1,15 @@
 import React from "react";
 
-const renderSentences = strings =>
-  strings.map(sentence => {
-    return (
-      <li key={sentence} className="sentence">
-        {sentence}
-      </li>
-    );
-  });
-
 const Messages = props => {
+  const renderSentences = strings =>
+    strings.map(sentence => {
+      return (
+        <li key={sentence} className="sentence">
+          {sentence}
+        </li>
+      );
+    });
+
   return (
     <div className="message-card">
       <h4 className="card-header">

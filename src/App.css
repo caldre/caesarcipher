@@ -3,7 +3,7 @@
   padding: 0px;
 }
 
-@media (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .message-area {
     flex-direction: column;
   }
@@ -21,7 +21,6 @@ body {
   align-items: center;
 }
 .header {
-  min-height: 15vh;
   font-family: "Londrina Solid", cursive;
   font-size: 2rem;
   display: flex;
@@ -70,7 +69,7 @@ body {
 }
 
 .card-header {
-  height: 8vh;
+  min-height: 8vh;
   font-size: 2rem;
   background-color: rgba(236, 246, 255, 0.3);
   border-top-left-radius: 20px;

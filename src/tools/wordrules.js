@@ -50,9 +50,50 @@ const has4ConsecutiveVowelsOrConsonants = word => {
   } else return false;
 };
 
+// Sana sisältää kieleen kuulumattomia kirjainyhdistelmiä
+const hasBadCombinationOfLetters = word => {
+  const badCombinations = [
+    "nödiä",
+    "vulyven",
+    "vuomm",
+    "oneessaste",
+    "fakäilettentammä",
+    "eikkatsa",
+    "härköipiis",
+    "hiryhdestä",
+    "otosohtin",
+    "elluha",
+    "äälkylain",
+    "tatteti",
+    "muosuve",
+    "ekeksov",
+    "tärelieksi",
+    "pesattaipan",
+    "tetosovan",
+    "hisikasen",
+    "häämourvoksa",
+    "väntällöissä",
+    "hammahilerä",
+    "känintaas",
+    "källimmaaksat",
+    "nalahiian",
+    "kammahilerä",
+    "paaskinanian",
+    "toonketten",
+    "aissastikke",
+    "sisattailien",
+    "raakkellyt",
+    "suonnomoittaa",
+    "laattiraimon",
+    "haijilaudon"
+  ];
+  return badCombinations.includes(word);
+};
+
 export {
   endsWith2Consonants,
   hasBadChars,
   endsWithBadChar,
-  has4ConsecutiveVowelsOrConsonants
+  has4ConsecutiveVowelsOrConsonants,
+  hasBadCombinationOfLetters
 };

@@ -3,9 +3,9 @@ import {
   endsWith2Consonants,
   hasBadChars,
   endsWithBadChar,
-  has4ConsecutiveVowelsOrConsonants
+  has4ConsecutiveVowelsOrConsonants,
+  hasBadCombinationOfLetters
 } from "./wordrules";
-// import { vocabulary } from "./kaikkisanat.js";
 
 const { bullshits } = data;
 const sentences = {
@@ -82,9 +82,10 @@ const cipher = (string, cipherKey) => {
 const testWord = word => {
   if (
     endsWith2Consonants(word) ||
-    hasBadChars(word) ||
-    endsWithBadChar(word) ||
-    has4ConsecutiveVowelsOrConsonants(word)
+    //hasBadChars(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
+    //endsWithBadChar(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
+    has4ConsecutiveVowelsOrConsonants(word) ||
+    hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
   ) {
     return word;
   }
@@ -116,4 +117,4 @@ const uncipherSentences = bullshits => {
 
 uncipherSentences(bullshits);
 
-export { sentences };
+export { sentences, uncipherSentences, testWord, cipher };
