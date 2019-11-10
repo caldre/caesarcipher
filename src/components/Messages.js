@@ -11,7 +11,7 @@ const renderSentences = strings =>
 
 const Messages = props => {
   return (
-    <div className="message-board">
+    <div className="message-card">
       <h4 className="card-header">
         <i
           className={props.className}
@@ -19,9 +19,10 @@ const Messages = props => {
             color: props.color
           }}
         />
-        {props.header}
+        {props.header}s<br /> found: {props.messages.length}
       </h4>
-      <ol className="message-list">{renderSentences(props.messages)}</ol>
+
+      <ul className="message-list">{renderSentences(props.messages)}</ul>
     </div>
   );
 };

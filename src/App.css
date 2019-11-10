@@ -3,6 +3,12 @@
   padding: 0px;
 }
 
+@media (max-width: 600px) {
+  .message-area {
+    flex-direction: column;
+  }
+}
+
 body {
   font-family: "Londrina Solid", cursive;
   height: 100vh;
@@ -12,28 +18,33 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .header {
+  min-height: 15vh;
   font-family: "Londrina Solid", cursive;
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   justify-content: left;
+  align-items: center;
   color: aliceblue;
-  margin: 5vh;
+  margin: 2vh;
+  text-shadow: 4px 4px black;
 }
 
 .navbar {
+  width: 100%;
   display: flex;
-  overflow: hidden;
+  justify-content: center;
   list-style: none;
   color: rgb(178, 182, 204);
   background-color: aliceblue;
 }
 .navbar li {
+  left: 50%;
   transition: 0.2s;
   font-family: "Permanent Marker", cursive;
-  font-size: 2rem;
-  padding: 0.5vh;
+  font-size: 1.2rem;
   margin: 1vh;
 }
 
@@ -48,63 +59,69 @@ body {
   color: black;
 }
 
-.card-header {
-  margin-top: 4vh;
-  height: 5vh;
-  max-width: 20vh;
-  font-size: 2rem;
-  background-color: rgba(236, 246, 255, 0.1);
+.message-area {
+  display: flex;
+  flex-direction: row;
+}
 
+.message-card {
+  margin-bottom: 3vh;
+  max-width: 80vh;
+}
+
+.card-header {
+  height: 8vh;
+  font-size: 2rem;
+  background-color: rgba(236, 246, 255, 0.3);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: aliceblue;
+  text-shadow: 2px 4px 4px black;
+  margin: 2vh 1vh 0vh 1vh;
+}
+
+.card-header i {
+  height: 2vh;
+  padding-right: 1vh;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0vh;
   margin-left: 1vh;
+  margin-right: 1vh;
+  color: aliceblue;
+  font-family: "Barlow", sans-serif;
+  background-color: rgba(236, 246, 255, 0.1);
+}
+
+.card-header {
+  font-size: 2rem;
+  background-color: rgba(236, 246, 255, 0.3);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .card-header i {
   padding-right: 1vh;
 }
 
-.message-area {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-}
-
-.message-list {
-  padding: 3vh;
-  margin-left: 1vh;
-  margin-right: 1vh;
-  color: aliceblue;
-  font-family: "Barlow", sans-serif;
-  font-size: 0.8rem;
-  line-height: 1rem;
-  background-color: rgba(236, 246, 255, 0.1);
-}
-
-.message-board {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 3vh;
-}
-
 .sentence {
   padding: 1vh;
-  text-justify: middle;
 }
 
 .sentence::first-letter {
   text-transform: capitalize;
-  color: aliceblue;
 }
 
-.sentence:nth-child(odd) {
+.sentence:nth-child(even) {
   background-image: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0)
   );
 }
@@ -119,7 +136,7 @@ body {
   position: fixed;
   bottom: 0px;
   color: rgb(104, 104, 158);
-  background-color: rgb(25, 25, 50);
+  background-color: rgb(15, 15, 75);
 }
 
 .footer a {
