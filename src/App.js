@@ -28,7 +28,9 @@ function App() {
             messages={passedSentences}
             color="lightgreen"
           />
-        ) : null}
+        ) : (
+          <div></div>
+        )}
         {showDiscarded ? (
           <Messages
             className="fas fa-times-circle"
@@ -36,7 +38,9 @@ function App() {
             messages={discardedSentences}
             color="red"
           />
-        ) : null}
+        ) : (
+          <div></div>
+        )}
       </div>
       <Footer />
     </div>

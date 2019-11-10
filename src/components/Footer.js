@@ -29,7 +29,7 @@ const Footer = () => {
           {" "}
         </a>
       </div>
-      <div>© 2019 Jyrki Riestola</div>
+      <p>© 2019 Jyrki Riestola</p>
     </div>
   );
 };

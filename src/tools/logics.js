@@ -72,6 +72,7 @@ const cipher = (string, cipherKey) => {
       else {
         newSentence += character;
       }
+      return newSentence;
     });
   return newSentence;
 };
@@ -107,6 +108,7 @@ const uncipherSentences = bullshits => {
         );
         return sentences;
       }
+      return false;
     });
   });
   return sentences;

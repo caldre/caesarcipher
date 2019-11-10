@@ -16,8 +16,7 @@ const Messages = props => {
         <i
           className={props.className}
           style={{
-            color: props.color,
-            paddingRight: "10px"
+            color: props.color
           }}
         />
         {props.header}

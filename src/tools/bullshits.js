@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 const data = {
   bullshits: [
@@ -794,19 +794,5 @@ const data = {
     }
   ]
 };
-
-let vocabulary = [];
-
-const getVocabulary = () => {
-  axios
-    .get("http://localhost:3000/kaikkisanat.txt")
-    .then(res => {
-      vocabulary = [...res.data];
-    })
-    .catch(err => console.log(err));
-};
-getVocabulary();
-
-console.log(vocabulary);
 
 export { data };
