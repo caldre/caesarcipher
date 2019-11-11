@@ -1,17 +1,28 @@
-import { data } from "./bullshits";
+// import { data } from "./bullshits";
+import BullshitService from "./bullshitService";
 import {
   endsWith2Consonants,
-  hasBadChars,
-  endsWithBadChar,
-  has4ConsecutiveVowelsOrConsonants,
-  hasBadCombinationOfLetters
+  // hasBadChars,
+  // endsWithBadChar,
+  has4ConsecutiveVowelsOrConsonants
+  // hasBadCombinationOfLetters
 } from "./wordrules";
 
-const { bullshits } = data;
+//const { bullshits } = data;
+
 const sentences = {
   passedSentences: [],
   discardedSentences: []
 };
+
+async function getBullshits() {
+  return await BullshitService.getData();
+}
+
+let bullshits = getBullshits();
+
+console.log(bullshits);
+
 const letters = [
   "a",
   "b",
@@ -82,10 +93,10 @@ const cipher = (string, cipherKey) => {
 const testWord = word => {
   if (
     endsWith2Consonants(word) ||
-    //hasBadChars(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
-    //endsWithBadChar(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
-    has4ConsecutiveVowelsOrConsonants(word) ||
-    hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
+    // hasBadChars(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
+    // endsWithBadChar(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
+    has4ConsecutiveVowelsOrConsonants(word)
+    // hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
   ) {
     return word;
   }
@@ -117,4 +128,4 @@ const uncipherSentences = bullshits => {
 
 uncipherSentences(bullshits);
 
-export { sentences, uncipherSentences, testWord, cipher };
+export { sentences };
