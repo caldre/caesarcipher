@@ -1,4 +1,3 @@
-// import { data } from "./bullshits";
 import BullshitService from "./bullshitService";
 import {
   endsWith2Consonants,
@@ -8,8 +7,6 @@ import {
   // hasBadCombinationOfLetters
 } from "./wordrules";
 
-//const { bullshits } = data;
-
 const sentences = {
   passedSentences: [],
   discardedSentences: []
@@ -18,8 +15,6 @@ const sentences = {
 async function getBullshits() {
   return await BullshitService.getData();
 }
-
-let bullshits = getBullshits();
 
 const letters = [
   "a",
@@ -125,6 +120,6 @@ const uncipherSentences = async () => {
   return sentences;
 };
 
-uncipherSentences(bullshits);
+uncipherSentences();
 
 export { sentences };
