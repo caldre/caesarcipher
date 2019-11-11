@@ -21,8 +21,6 @@ async function getBullshits() {
 
 let bullshits = getBullshits();
 
-console.log(bullshits);
-
 const letters = [
   "a",
   "b",
@@ -103,8 +101,9 @@ const testWord = word => {
 };
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
-const uncipherSentences = bullshits => {
-  bullshits.forEach(bullshit => {
+const uncipherSentences = async () => {
+  let bullshits = await getBullshits();
+  bullshits.bullshits.forEach(bullshit => {
     cipherKeys.find(key => {
       if (
         cipher(bullshit.message, key)
