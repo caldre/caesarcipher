@@ -21,6 +21,8 @@ body {
   align-items: center;
 }
 .header {
+  display: flex;
+  flex-direction: column;
   font-family: "Londrina Solid", cursive;
   font-size: 2rem;
   display: flex;

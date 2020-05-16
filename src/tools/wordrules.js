@@ -11,31 +11,31 @@
 const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
 
 // Lauseen mikään sana ei voi päättyä kahteen peräkkäiseen konsonanttiin
-const endsWith2Consonants = word => {
+const endsWith2Consonants = (word) => {
   const lastTwoChars = word.split("").splice(word.length - 2);
-  const isConsonant = character => {
+  const isConsonant = (character) => {
     return !vowels.includes(character);
   };
   return lastTwoChars.every(isConsonant);
 };
 
 // Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z
-const hasBadChars = word => {
+const hasBadChars = (word) => {
   const badChars = ["c", "q", "w", "x", "z"];
-  const checkForBadChars = character => {
+  const checkForBadChars = (character) => {
     return badChars.includes(character);
   };
   return word.split("").find(checkForBadChars);
 };
 
 // Sana ei voi päättyä B, D, F, G, H, J, K, L, M, P, R, V
-const endsWithBadChar = word => {
+const endsWithBadChar = (word) => {
   const badChars = ["b", "d", "f", "g", "h", "j", "k", "l", "m", "p", "r", "v"];
   return badChars.includes(word[word.length - 1]);
 };
 
 // Sanassa ei voi esiintyä neljää peräkkäistä vokaalia tai konsonanttia
-const has4ConsecutiveVowelsOrConsonants = word => {
+const has4ConsecutiveVowelsOrConsonants = (word) => {
   if (word.length >= 4) {
     for (let i = 0; i < word.length - 3; i++) {
       let result = vowels.includes(word[i]);
@@ -50,10 +50,18 @@ const has4ConsecutiveVowelsOrConsonants = word => {
   } else return false;
 };
 
+const cantStartWithThreeConsonants = (word) => {
+  const firstThreeConsonants = word.split("").slice(0, 3);
+  const isConsonant = (character) => {
+    return !vowels.includes(character);
+  };
+  return firstThreeConsonants.every(isConsonant);
+};
+
 // Sana sisältää kieleen kuulumattomia kirjainyhdistelmiä
-const hasBadCombinationOfLetters = word => {
+const hasBadCombinationOfLetters = (word) => {
   const badCombinations = [
-    "nödiä",
+    "jämojmoä",
     "vulyven",
     "vuomm",
     "oneessaste",
@@ -85,7 +93,7 @@ const hasBadCombinationOfLetters = word => {
     "raakkellyt",
     "suonnomoittaa",
     "laattiraimon",
-    "haijilaudon"
+    "haijilaudon",
   ];
   return badCombinations.includes(word);
 };
@@ -95,5 +103,6 @@ export {
   hasBadChars,
   endsWithBadChar,
   has4ConsecutiveVowelsOrConsonants,
-  hasBadCombinationOfLetters
+  cantStartWithThreeConsonants,
+  hasBadCombinationOfLetters,
 };

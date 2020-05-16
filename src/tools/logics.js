@@ -1,20 +1,16 @@
-import BullshitService from "./bullshitService";
 import {
   endsWith2Consonants,
-  // hasBadChars,
-  // endsWithBadChar,
-  has4ConsecutiveVowelsOrConsonants
-  // hasBadCombinationOfLetters
+  hasBadChars,
+  endsWithBadChar,
+  has4ConsecutiveVowelsOrConsonants,
+  cantStartWithThreeConsonants,
+  hasBadCombinationOfLetters,
 } from "./wordrules";
 
 const sentences = {
   passedSentences: [],
-  discardedSentences: []
+  discardedSentences: [],
 };
-
-async function getBullshits() {
-  return await BullshitService.getData();
-}
 
 const letters = [
   "a",
@@ -45,7 +41,7 @@ const letters = [
   "z",
   "å",
   "ä",
-  "ö"
+  "ö",
 ];
 
 const cipherKeys = [];
@@ -57,11 +53,11 @@ for (let i = 1; i <= 29; i++) {
 // Apufunktio, Caesar-käännös
 const cipher = (string, cipherKey) => {
   let newSentence = "";
-  string
+  string.sentence
     .toLowerCase()
-    .slice(0, -1)
+    //.slice(0, -1)
     .split("")
-    .map(character => {
+    .map((character) => {
       // Tarkastetaan onko kohdalla kirjain
       if (letters[letters.indexOf(character)]) {
         // Tarkastetaan että SHIFT on pienempi kuin aakkosten määrä
@@ -83,43 +79,45 @@ const cipher = (string, cipherKey) => {
 
 // Apufunktio, testipatteri. Säännöt vielä keskeneräiset --> poistetaan mahdollisesti osa suorista kirjainestoista
 // ja lisätään esim. 4 peräkkäistä vokaalia & 4 konsonanttia etc.
-const testWord = word => {
+const testWord = (word) => {
   if (
     endsWith2Consonants(word) ||
-    // hasBadChars(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
-    // endsWithBadChar(word) || HOX! Tämä sääntö oli näillä lauseilla turha, joten poistettu käytöstä
-    has4ConsecutiveVowelsOrConsonants(word)
-    // hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
+    hasBadChars(word) ||
+    endsWithBadChar(word) ||
+    has4ConsecutiveVowelsOrConsonants(word) ||
+    cantStartWithThreeConsonants(word) ||
+    hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
   ) {
     return word;
   }
 };
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
-const uncipherSentences = async () => {
-  let bullshits = await getBullshits();
-  bullshits.bullshits.forEach(bullshit => {
-    cipherKeys.find(key => {
-      if (
-        cipher(bullshit.message, key)
-          .split(" ")
-          .find(testWord)
-      ) {
+const uncipherSentences = (data) => {
+  if (!data) {
+    return;
+  }
+  data.forEach((sentence) => {
+    cipherKeys.find((key) => {
+      if (cipher(sentence, key).split(" ").find(testWord)) {
         if (key === 29) {
-          sentences.discardedSentences.push(bullshit.message);
+          sentences.discardedSentences.push(sentence);
         }
       } else {
-        sentences.passedSentences.push(
-          cipher(bullshit.message.concat("."), key)
-        );
+        console.log(cipher(sentence, key));
+        let newString = cipher(sentence, key);
+        let passedSentence = {
+          id: sentence.id,
+          sentence: newString,
+        };
+        sentences.passedSentences.push(passedSentence);
         return sentences;
       }
       return false;
     });
   });
+  console.log(sentences);
   return sentences;
 };
 
-uncipherSentences();
-
-export { sentences };
+export { sentences, uncipherSentences };

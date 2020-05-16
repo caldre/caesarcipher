@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Messages from "./components/Messages";
 import Footer from "./components/Footer";
-import { sentences } from "./tools/logics";
+import { sentences, uncipherSentences } from "./tools/logics";
 import "./App.css";
 
-function App() {
-  const [showPassed, setShowpassed] = useState(false);
-  const [showDiscarded, setShowDiscarded] = useState(false);
+function App(props) {
+  const [showPassed, setShowpassed] = useState(true);
+  const [showDiscarded, setShowDiscarded] = useState(true);
   const { passedSentences, discardedSentences } = sentences;
+
+  uncipherSentences(props.sentenceList);
 
   return (
     <div className="container">
@@ -47,4 +50,10 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    sentenceList: state.sentenceReducer,
+  };
+};
+
+export default connect(mapStateToProps)(App);

@@ -1,11 +1,11 @@
 import React from "react";
 
-const Messages = props => {
-  const renderSentences = strings =>
-    strings.map(sentence => {
+const Messages = (props) => {
+  const renderSentences = (sentences) =>
+    sentences.map((sentence) => {
       return (
-        <li key={sentence} className="sentence">
-          {sentence}
+        <li key={sentence.id} className="sentence">
+          {sentence.sentence}
         </li>
       );
     });
@@ -16,7 +16,7 @@ const Messages = props => {
         <i
           className={props.className}
           style={{
-            color: props.color
+            color: props.color,
           }}
         />
         {props.header}s<br /> found: {props.messages.length}
