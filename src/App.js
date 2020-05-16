@@ -7,12 +7,10 @@ import Footer from "./components/Footer";
 import { sentences, uncipherSentences } from "./tools/logics";
 import "./App.css";
 
-function App(props) {
+function App({ sentences }) {
   const [showPassed, setShowpassed] = useState(true);
   const [showDiscarded, setShowDiscarded] = useState(true);
-  const { passedSentences, discardedSentences } = sentences;
-
-  uncipherSentences(props.sentenceList);
+  const { passedSentences, discardedSentences } = uncipherSentences(sentences);
 
   return (
     <div className="container">
@@ -31,9 +29,7 @@ function App(props) {
             messages={passedSentences}
             color="lightgreen"
           />
-        ) : (
-          <div></div>
-        )}
+        ) : null}
         {showDiscarded ? (
           <Messages
             className="fas fa-times-circle"
@@ -41,19 +37,15 @@ function App(props) {
             messages={discardedSentences}
             color="red"
           />
-        ) : (
-          <div></div>
-        )}
+        ) : null}
       </div>
       <Footer />
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    sentenceList: state.sentenceReducer,
-  };
-};
+const mapStateToProps = (state) => ({
+  sentences: state.sentenceReducer,
+});
 
 export default connect(mapStateToProps)(App);

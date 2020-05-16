@@ -10,12 +10,12 @@ import { loadState, saveState } from "./localStorage";
 
 const store = createStore(
   reducers,
-  loadState(),
+  // loadState(),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
-  saveState(store.getState());
+  // saveState(store.getState());
 });
 
 ReactDOM.render(

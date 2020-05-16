@@ -95,17 +95,23 @@ const testWord = (word) => {
 };
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
-const uncipherSentences = (data) => {
-  if (!data) {
+const uncipherSentences = (sentences) => {
+  if (!sentences) {
     return;
   }
-  data.forEach((sentence) => {
+
+  const uncipheredSentences = {
+    passedSentences: [],
+    discardedSentences: [],
+  };
+
+  sentences.forEach((sentence) => {
     cipherKeys.find((key) => {
       if (cipher(sentence, key).split(" ").find(testWord)) {
         if (key === 29) {
           // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
           // addToDiscarded(sentence)
-          sentences.discardedSentences.push(sentence);
+          uncipheredSentences.discardedSentences.push(sentence);
         }
       } else {
         console.log(cipher(sentence, key));
@@ -116,14 +122,14 @@ const uncipherSentences = (data) => {
         };
         // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
         // addToPassed(passedSentence)
-        sentences.passedSentences.push(passedSentence);
-        return sentences;
+        uncipheredSentences.passedSentences.push(passedSentence);
+        return uncipheredSentences;
       }
       return false;
     });
   });
-  console.log(sentences);
-  return sentences;
+  console.log(uncipheredSentences);
+  return uncipheredSentences;
 };
 
-export { sentences, uncipherSentences };
+export { uncipherSentences };
