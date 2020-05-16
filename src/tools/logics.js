@@ -1,3 +1,5 @@
+import { addToPassed, addToDiscarded } from "../actions";
+
 import {
   endsWith2Consonants,
   hasBadChars,
@@ -101,6 +103,8 @@ const uncipherSentences = (data) => {
     cipherKeys.find((key) => {
       if (cipher(sentence, key).split(" ").find(testWord)) {
         if (key === 29) {
+          // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
+          // addToDiscarded(sentence)
           sentences.discardedSentences.push(sentence);
         }
       } else {
@@ -110,6 +114,9 @@ const uncipherSentences = (data) => {
           id: sentence.id,
           sentence: newString,
         };
+        // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
+        // addToPassed(passedSentence)
+        addToPassed(passedSentence);
         sentences.passedSentences.push(passedSentence);
         return sentences;
       }
