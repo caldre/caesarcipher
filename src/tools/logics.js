@@ -116,7 +116,6 @@ const uncipherSentences = (data) => {
         };
         // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
         // addToPassed(passedSentence)
-        addToPassed(passedSentence);
         sentences.passedSentences.push(passedSentence);
         return sentences;
       }
