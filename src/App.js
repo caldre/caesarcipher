@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Messages from "./components/Messages";
 import Footer from "./components/Footer";
-import { sentences, uncipherSentences } from "./tools/logics";
+import { uncipherSentences } from "./tools/logics";
 import "./App.css";
 
 function App({ sentences }) {

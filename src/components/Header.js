@@ -9,8 +9,8 @@ const Header = () => {
       <p>
         So here's the common problem we all have. Your friend just sent you a
         message, but it's full of gibberish. Knowing your friends strange habits
-        you immediately presume he has crypted the message. This application
-        lets you uncrypt it, as long as it is Finnish and using Caesar cipher.
+        you immediately presume he has encrypted the message. This application
+        lets you decrypt it, as long as it is Finnish and using Caesar cipher.
         Enjoy!
         <br></br>
         <br></br>

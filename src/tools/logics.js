@@ -1,11 +1,10 @@
-import { addToPassed, addToDiscarded } from "../actions";
-
 import {
   endsWith2Consonants,
   hasBadChars,
   endsWithBadChar,
   has4ConsecutiveVowelsOrConsonants,
-  cantStartWithThreeConsonants,
+  cantStartWith3VowelsOrConsonants,
+  usingOnlySpecialChars,
   hasBadCombinationOfLetters,
 } from "./wordrules";
 
@@ -48,7 +47,7 @@ const letters = [
 
 const cipherKeys = [];
 // Salausavainten määrä - suomalaisia aakkosia on 29
-for (let i = 1; i <= 29; i++) {
+for (let i = 0; i <= 28; i++) {
   cipherKeys.push(i);
 }
 
@@ -66,7 +65,7 @@ const cipher = (string, cipherKey) => {
         if (letters.indexOf(character) + cipherKey <= 28) {
           newSentence += letters[letters.indexOf(character) + cipherKey];
           // Tarkastetaan pyörähtääkö ö --> a
-        } else if (letters.indexOf(character) + cipherKey >= 29) {
+        } else if (letters.indexOf(character) + cipherKey >= 28) {
           newSentence +=
             letters[letters.indexOf(character) - (letters.length - cipherKey)];
         }
@@ -87,11 +86,13 @@ const testWord = (word) => {
     hasBadChars(word) ||
     endsWithBadChar(word) ||
     has4ConsecutiveVowelsOrConsonants(word) ||
-    cantStartWithThreeConsonants(word) ||
+    cantStartWith3VowelsOrConsonants(word) ||
+    usingOnlySpecialChars(word) ||
     hasBadCombinationOfLetters(word) // Tämä on mielestäni huijaamista
   ) {
     return word;
   }
+  return false;
 };
 
 // Funktio joka yhdistää Caesar-käännöksen ja testaa lauseen sanat sääntöjä vasten
@@ -108,13 +109,12 @@ const uncipherSentences = (sentences) => {
   sentences.forEach((sentence) => {
     cipherKeys.find((key) => {
       if (cipher(sentence, key).split(" ").find(testWord)) {
-        if (key === 29) {
+        if (key === 28) {
           // TÄMÄ PITÄIS LAITTAA TOIMINTAAN
           // addToDiscarded(sentence)
           uncipheredSentences.discardedSentences.push(sentence);
         }
       } else {
-        console.log(cipher(sentence, key));
         let newString = cipher(sentence, key);
         let passedSentence = {
           id: sentence.id,
@@ -128,7 +128,6 @@ const uncipherSentences = (sentences) => {
       return false;
     });
   });
-  console.log(uncipheredSentences);
   return uncipheredSentences;
 };
 

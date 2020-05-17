@@ -9,19 +9,41 @@
 // pseudosuomea ei muulla tavoin saada karsittua
 
 const vowels = ["a", "e", "i", "o", "u", "y", "ä", "ö"];
+const consonants = [
+  "b",
+  "c",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "v",
+  "w",
+  "x",
+  "z",
+];
 
 // Lauseen mikään sana ei voi päättyä kahteen peräkkäiseen konsonanttiin
 const endsWith2Consonants = (word) => {
   const lastTwoChars = word.split("").splice(word.length - 2);
   const isConsonant = (character) => {
-    return !vowels.includes(character);
+    return consonants.includes(character);
   };
   return lastTwoChars.every(isConsonant);
 };
 
-// Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z
+// Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z, Å
 const hasBadChars = (word) => {
-  const badChars = ["c", "q", "w", "x", "z"];
+  const badChars = ["c", "q", "w", "x", "z", "å"];
   const checkForBadChars = (character) => {
     return badChars.includes(character);
   };
@@ -36,6 +58,9 @@ const endsWithBadChar = (word) => {
 
 // Sanassa ei voi esiintyä neljää peräkkäistä vokaalia tai konsonanttia
 const has4ConsecutiveVowelsOrConsonants = (word) => {
+  if (!usingOnlySpecialChars(word)) {
+    return false;
+  }
   if (word.length >= 4) {
     for (let i = 0; i < word.length - 3; i++) {
       let result = vowels.includes(word[i]);
@@ -44,57 +69,50 @@ const has4ConsecutiveVowelsOrConsonants = (word) => {
           if (vowels.includes(word[i + 3]) === result) {
             return true;
           }
+          return false;
         }
+        return false;
       }
+      return false;
     }
   } else return false;
 };
 
-const cantStartWithThreeConsonants = (word) => {
-  const firstThreeConsonants = word.split("").slice(0, 3);
-  const isConsonant = (character) => {
-    return !vowels.includes(character);
-  };
-  return firstThreeConsonants.every(isConsonant);
+// Sanat eivät voi alkaa kolmella perättäisellä konsonantilla, tai vokaalilla
+const cantStartWith3VowelsOrConsonants = (word) => {
+  if (word[0] !== "i" && word[1] === "i" && word[2] !== "i") {
+    // Poikkeussääntö: "aie", "aiemmin", oikaista --> "oion"
+    return false;
+  }
+  // Lisäyssääntö: erikoismerkit
+  if (word.includes(vowels || consonants)) {
+    let result = vowels.includes(word[0]);
+    if (vowels.includes(word[1]) === result) {
+      if (vowels.includes(word[2]) === result) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+  return false;
+};
+
+const usingOnlySpecialChars = (word) => {
+  for (let i = 0; i < word.length; i++) {
+    if (!consonants.includes(word[i]) && !vowels.includes(word[i])) {
+      return false;
+    }
+    if (consonants.includes(word[i]) || vowels.includes(word[i])) {
+      return false;
+    }
+  }
+  return true;
 };
 
 // Sana sisältää kieleen kuulumattomia kirjainyhdistelmiä
 const hasBadCombinationOfLetters = (word) => {
-  const badCombinations = [
-    "jämojmoä",
-    "vulyven",
-    "vuomm",
-    "oneessaste",
-    "fakäilettentammä",
-    "eikkatsa",
-    "härköipiis",
-    "hiryhdestä",
-    "otosohtin",
-    "elluha",
-    "äälkylain",
-    "tatteti",
-    "muosuve",
-    "ekeksov",
-    "tärelieksi",
-    "pesattaipan",
-    "tetosovan",
-    "hisikasen",
-    "häämourvoksa",
-    "väntällöissä",
-    "hammahilerä",
-    "känintaas",
-    "källimmaaksat",
-    "nalahiian",
-    "kammahilerä",
-    "paaskinanian",
-    "toonketten",
-    "aissastikke",
-    "sisattailien",
-    "raakkellyt",
-    "suonnomoittaa",
-    "laattiraimon",
-    "haijilaudon",
-  ];
+  const badCombinations = [];
   return badCombinations.includes(word);
 };
 
@@ -103,6 +121,7 @@ export {
   hasBadChars,
   endsWithBadChar,
   has4ConsecutiveVowelsOrConsonants,
-  cantStartWithThreeConsonants,
+  cantStartWith3VowelsOrConsonants,
+  usingOnlySpecialChars,
   hasBadCombinationOfLetters,
 };
