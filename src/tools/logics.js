@@ -54,7 +54,7 @@ for (let i = 0; i <= 28; i++) {
 // Apufunktio, Caesar-käännös
 const cipher = (string, cipherKey) => {
   let newSentence = "";
-  string.sentence
+  string
     .toLowerCase()
     //.slice(0, -1)
     .split("")
@@ -131,4 +131,4 @@ const uncipherSentences = (sentences) => {
   return uncipheredSentences;
 };
 
-export { uncipherSentences };
+export { cipher, uncipherSentences };

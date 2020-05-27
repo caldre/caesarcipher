@@ -33,6 +33,47 @@ body {
   text-shadow: 4px 4px black;
 }
 
+.errors {
+  list-style: none;
+}
+
+.tools-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cipher-tools {
+}
+
+.button {
+  padding: 1rem;
+
+  color: white;
+  background-color: #ffffff42;
+  font-weight: 600;
+  border-style: none;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #0000002f;
+  border-style: none;
+  padding: 2rem;
+}
+
+.submit {
+  width: 100%;
+}
+
 .navbar {
   width: 100%;
   display: flex;
