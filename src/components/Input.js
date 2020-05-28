@@ -5,14 +5,14 @@ import CipherTools from "./CipherTools";
 import { cipher } from "../tools/logics";
 
 const Input = (props) => {
-  const [sentence, setSentence] = useState("");
-  const [originalSentence, setOriginalSentence] = useState("");
+  const [sentence, setSentence] = useState({ sentence: "" });
+  const [originalSentence, setOriginalSentence] = useState({ sentence: "" });
   const [cipherKey, setCipherKey] = useState(0);
   const [errors, setErrors] = useState({});
 
   // Check for input errors
-  const checkForErrors = (string) => {
-    if (string.length <= 20) {
+  const checkForErrors = () => {
+    if (sentence.sentence.length <= 20) {
       setErrors({ tooShort: "The sentence is too short" });
       console.log(errors);
     }
@@ -23,7 +23,7 @@ const Input = (props) => {
       return;
     }
 
-    setSentence(cipher(originalSentence, cipherKey - 1));
+    setSentence({ sentence: cipher(originalSentence, cipherKey - 1) });
     setCipherKey(cipherKey - 1);
   };
 
@@ -31,14 +31,14 @@ const Input = (props) => {
     if (cipherKey === 28) {
       return;
     }
-    setSentence(cipher(originalSentence, cipherKey + 1));
+    setSentence({ sentence: cipher(originalSentence, cipherKey + 1) });
     setCipherKey(cipherKey + 1);
   };
 
   const handleChange = async (e) => {
-    setSentence(e.target.value);
-    setOriginalSentence(e.target.value);
-    console.log(originalSentence + sentence);
+    setSentence({ sentence: e.target.value });
+    setOriginalSentence({ sentence: e.target.value });
+    console.log(originalSentence.sentence + sentence.sentence);
   };
 
   const handleSubmit = (e) => {
@@ -48,8 +48,9 @@ const Input = (props) => {
     if (Object.keys(errors).length !== 0) {
       return;
     }
-    props.addSentence(sentence);
-    setSentence("");
+    props.addSentence(sentence.sentence);
+    setSentence({ sentence: "" });
+    setOriginalSentence({ sentence: "" });
     setErrors({});
   };
 
@@ -70,7 +71,7 @@ const Input = (props) => {
           rows="15"
           type="text"
           id="input"
-          value={sentence}
+          value={sentence.sentence}
           placeholder="Add your sentence here."
           autoFocus={true}
           onChange={handleChange}
