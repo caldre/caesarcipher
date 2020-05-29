@@ -6,7 +6,6 @@ import { cipher } from "../tools/logics";
 
 const Input = (props) => {
   const [sentence, setSentence] = useState({ sentence: "" });
-  const [originalSentence, setOriginalSentence] = useState({ sentence: "" });
   const [cipherKey, setCipherKey] = useState(0);
   const [errors, setErrors] = useState({});
 
@@ -20,24 +19,22 @@ const Input = (props) => {
 
   const handleDecrease = () => {
     if (cipherKey === 0) {
+      setCipherKey(28);
       return;
     }
-
-    setSentence({ sentence: cipher(originalSentence, cipherKey - 1) });
     setCipherKey(cipherKey - 1);
   };
 
   const handleIncrease = () => {
     if (cipherKey === 28) {
+      setCipherKey(0);
       return;
     }
-    setSentence({ sentence: cipher(originalSentence, cipherKey + 1) });
     setCipherKey(cipherKey + 1);
   };
 
   const handleChange = (e) => {
     setSentence({ sentence: e.target.value });
-    setOriginalSentence({ sentence: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -49,7 +46,6 @@ const Input = (props) => {
     }
     props.addSentence(sentence.sentence);
     setSentence({ sentence: "" });
-    setOriginalSentence({ sentence: "" });
     setErrors({});
   };
 
@@ -64,17 +60,27 @@ const Input = (props) => {
         <ul>
           <li className="errors">{errors.tooShort}</li>
         </ul>
-        <label htmlFor="input">Sentence</label>
-        <textarea
-          cols="50"
-          rows="15"
-          type="text"
-          id="input"
-          value={sentence.sentence}
-          placeholder="Add your sentence here."
-          autoFocus={true}
-          onChange={handleChange}
-        ></textarea>
+        <div className="textareas">
+          <textarea
+            cols="50"
+            rows="15"
+            type="text"
+            id="input"
+            value={sentence.sentence}
+            placeholder="Add your sentence here."
+            autoFocus={true}
+            onChange={handleChange}
+          ></textarea>
+          <textarea
+            cols="50"
+            rows="15"
+            type="text"
+            id="output"
+            value={cipher(sentence, cipherKey)}
+            placeholder="Here will be thy cipher"
+            disabled={true}
+          ></textarea>
+        </div>
         <input
           className="button submit"
           type="submit"

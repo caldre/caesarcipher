@@ -9,7 +9,8 @@ const CipherTools = (props) => {
         DECREASE
       </button>
       <p className="text-demo">
-        A --> {cipher(demoText, props.cipherKey).toLocaleUpperCase()}
+        {`Cipher key: ${props.cipherKey}`}
+        <br></br>A --> {cipher(demoText, props.cipherKey).toLocaleUpperCase()}
       </p>
       <button className="button button-right" onClick={props.increase}>
         INCREASE

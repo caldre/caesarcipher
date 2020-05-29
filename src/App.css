@@ -59,7 +59,22 @@ body {
   flex-direction: column;
 }
 
+.textareas {
+  display: flex;
+  flex-direction: row;
+}
+
 #input {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #0000002f;
+  border-style: none;
+  padding: 2rem;
+}
+#output {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
