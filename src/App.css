@@ -23,7 +23,7 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  font-family: "Londrina Solid", cursive;
+
   font-size: 2rem;
   display: flex;
   justify-content: left;
@@ -47,7 +47,7 @@ body {
 
 .button {
   padding: 1rem;
-
+  cursor: pointer;
   color: white;
   background-color: #ffffff42;
   font-weight: 600;
@@ -107,12 +107,13 @@ body {
 }
 
 .message-card {
+  flex: 1;
   margin-bottom: 3vh;
   max-width: 80vh;
 }
 
 .card-header {
-  min-height: 8vh;
+  min-height: 10vh;
   font-size: 2rem;
   background-color: rgba(236, 246, 255, 0.3);
   border-top-left-radius: 20px;

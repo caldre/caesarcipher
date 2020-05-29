@@ -35,15 +35,14 @@ const Input = (props) => {
     setCipherKey(cipherKey + 1);
   };
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     setSentence({ sentence: e.target.value });
     setOriginalSentence({ sentence: e.target.value });
-    console.log(originalSentence.sentence + sentence.sentence);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkForErrors(sentence);
+    checkForErrors();
     console.log(errors);
     if (Object.keys(errors).length !== 0) {
       return;

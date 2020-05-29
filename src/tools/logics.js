@@ -8,11 +8,6 @@ import {
   hasBadCombinationOfLetters,
 } from "./wordrules";
 
-const sentences = {
-  passedSentences: [],
-  discardedSentences: [],
-};
-
 const letters = [
   "a",
   "b",
@@ -57,7 +52,6 @@ const cipher = (string, cipherKey) => {
   if (string === "") {
     return;
   }
-  console.log(string);
   string.sentence
     .toLowerCase()
     //.slice(0, -1)

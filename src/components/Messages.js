@@ -11,7 +11,7 @@ const Messages = (props) => {
     });
 
   return (
-    <div className="message-card">
+    <div className="message-card" style={props.style}>
       <h4 className="card-header">
         <i
           className={props.className}
@@ -19,7 +19,7 @@ const Messages = (props) => {
             color: props.color,
           }}
         />
-        {props.header}s<br /> found: {props.messages.length}
+        {props.header}: {props.messages.length}
       </h4>
 
       <ul className="message-list">{renderSentences(props.messages)}</ul>

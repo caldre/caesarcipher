@@ -34,33 +34,43 @@ const consonants = [
 
 // Lauseen mikään sana ei voi päättyä kahteen peräkkäiseen konsonanttiin
 const endsWith2Consonants = (word) => {
-  const lastTwoChars = word.split("").splice(word.length - 2);
+  const lastTwoCharacters = word.split("").splice(word.length - 2);
   const isConsonant = (character) => {
     return consonants.includes(character);
   };
-  return lastTwoChars.every(isConsonant);
+  return lastTwoCharacters.every(isConsonant);
 };
 
 // Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z, Å
 const hasBadChars = (word) => {
-  const badChars = ["c", "q", "w", "x", "z", "å"];
+  const badCharacters = ["c", "q", "w", "x", "z", "å"];
   const checkForBadChars = (character) => {
-    return badChars.includes(character);
+    return badCharacters.includes(character);
   };
   return word.split("").find(checkForBadChars);
 };
 
-// Sana ei voi päättyä B, D, F, G, H, J, K, L, M, P, R, V
+// Sana ei voi päättyä B, F, G, H, J, K, L, M, P, R, V
 const endsWithBadChar = (word) => {
-  const badChars = ["b", "d", "f", "g", "h", "j", "k", "l", "m", "p", "r", "v"];
-  return badChars.includes(word[word.length - 1]);
+  const badEndCharacters = [
+    "b",
+    "d",
+    "f",
+    "g",
+    "h",
+    "j",
+    "k",
+    "l",
+    "m",
+    "p",
+    "r",
+    "v",
+  ];
+  return badEndCharacters.includes(word[word.length - 1]);
 };
 
 // Sanassa ei voi esiintyä neljää peräkkäistä vokaalia tai konsonanttia
 const has4ConsecutiveVowelsOrConsonants = (word) => {
-  if (!usingOnlySpecialChars(word)) {
-    return false;
-  }
   if (word.length >= 4) {
     for (let i = 0; i < word.length - 3; i++) {
       let result = vowels.includes(word[i]);
@@ -78,14 +88,17 @@ const has4ConsecutiveVowelsOrConsonants = (word) => {
   } else return false;
 };
 
+console.log(has4ConsecutiveVowelsOrConsonants("aaaa"));
+
 // Sanat eivät voi alkaa kolmella perättäisellä konsonantilla, tai vokaalilla
 const cantStartWith3VowelsOrConsonants = (word) => {
   if (word[0] !== "i" && word[1] === "i" && word[2] !== "i") {
     // Poikkeussääntö: "aie", "aiemmin", oikaista --> "oion"
+
     return false;
   }
   // Lisäyssääntö: erikoismerkit
-  if (word.includes(vowels || consonants)) {
+  if (word.includes(vowels)) {
     let result = vowels.includes(word[0]);
     if (vowels.includes(word[1]) === result) {
       if (vowels.includes(word[2]) === result) {

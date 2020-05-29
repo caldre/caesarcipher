@@ -8,36 +8,32 @@ import { uncipherSentences } from "./tools/logics";
 import "./App.css";
 
 function App({ sentences }) {
-  const [showPassed, setShowpassed] = useState(true);
-  const [showDiscarded, setShowDiscarded] = useState(true);
   const { passedSentences, discardedSentences } = uncipherSentences(sentences);
 
   return (
     <div className="container">
       <Header />
-      <Navbar
-        setPass={() => setShowpassed(!showPassed)}
-        isPass={showPassed}
-        setDisc={() => setShowDiscarded(!showDiscarded)}
-        isDisc={showDiscarded}
-      />
+
       <div className="message-area">
-        {showPassed ? (
-          <Messages
-            className="fas fa-check-circle"
-            header="No Bullshit"
-            messages={passedSentences}
-            color="lightgreen"
-          />
-        ) : null}
-        {showDiscarded ? (
-          <Messages
-            className="fas fa-times-circle"
-            header="Bullshit"
-            messages={discardedSentences}
-            color="red"
-          />
-        ) : null}
+        <Messages
+          className="fas fa-check-circle"
+          header="Might be Finnish"
+          messages={passedSentences}
+          color="lightgreen"
+          style={{
+            display: passedSentences.length ? "" : "none",
+          }}
+        />
+
+        <Messages
+          className="fas fa-times-circle"
+          header="Not sure about these"
+          messages={discardedSentences}
+          color="red"
+          style={{
+            display: discardedSentences.length ? "" : "none",
+          }}
+        />
       </div>
       <Footer />
     </div>
