@@ -39,14 +39,15 @@ body {
 
 .tools-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .cipher-tools {
 }
 
 .button {
-  padding: 1rem;
+  padding: 1vh;
+  margin: 1vh;
   cursor: pointer;
   color: white;
   background-color: #ffffff42;
