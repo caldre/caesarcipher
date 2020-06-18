@@ -1,3 +1,13 @@
+## UPDATE 18.6.2020
+This app lets you crypt a message using simple Caesar cipher (with Finnish alphabets). It's originated from a code challenge I did a while back, but they took down their message-API, so I had to make some other use for this
+        
+        ¯\_(ツ)_/¯
+        
+P.S Autosolve-button is the real prize here - it runs some tests on 
+message and decides if it's Finnish! Sadly I made some "imporovements"
+and kinda broke it and have no time nor interest at this time trying to fix it. Try to test it, or sample the code instead for
+getting better picture
+
 ## Vastaus Solidabiksen 2019 koodihaasteeseen
 
 Haasteessa on haettu 200 kryptattua lausetta käyttäen Postman ohjelmaa.
