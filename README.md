@@ -1,5 +1,7 @@
 ## Vastaus Solidabiksen 2019 koodihaasteeseen
 
+Vastaus on nähtävillä myös https://caesarcipher-fin.herokuapp.com/
+
 Haasteessa on haettu 200 kryptattua lausetta käyttäen Postman ohjelmaa.
 Lauseet on kryptattu Caesar-salakirjoitusjärjestelmällä kirjaimia oikealle siirtämällä.
 Aakkostona toimii A-Ö. Kirjainkoolla ei ole merkitystä. Jokaisen lauseen avain on satunnainen.
@@ -22,8 +24,6 @@ että tällä tehtävällä haetaan sitä.
 - Muuten kuin lainasanoissa tai erisnimissä kielessä ei esiinny C, Q, W, X, Z
 - Sana ei voi päättyä B, D, F, G, H, J, K, L, M, P, R, V
 - Sanassa ei voi esiintyä neljää peräkkäistä vokaalia tai konsonanttia
-
-Vastaus on nähtävillä myös https://koodihaastesolidabis.herokuapp.com/
 
 ### `npm start`
 
