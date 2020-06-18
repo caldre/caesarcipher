@@ -8,7 +8,7 @@ message and decides if it's Finnish! Sadly I made some "imporovements"
 and kinda broke it and have no time nor interest at this time trying to fix it. Try to test it, or sample the code instead for
 getting better picture
 
-App is deployed to https://koodihaastesolidabis.herokuapp.com/ if you wanna check it out
+App is deployed to https://caesarcipher-fin.herokuapp.com/ if you wanna check it out
 
 ## Vastaus Solidabiksen 2019 koodihaasteeseen
 
